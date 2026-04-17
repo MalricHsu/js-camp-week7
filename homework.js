@@ -204,11 +204,11 @@ async function getOrdersWithAxios() {
 /*
 比較題：請說明 fetch 和 axios 的主要差異
 
-1. ____________________________________
+1. JSON 解析  a.fetch 要手動 await response.json() b. axios 自動解析，直接用 response.data
 
-2. ____________________________________
+2. Content-Type  a.POST 要手動設 headers: { 'Content-Type': 'application/json' } b. axios 自動解析
 
-3. ____________________________________
+3.錯誤處理  a.4xx/5xx 不會拋錯（要自己檢查 response.ok b. 4xx/5xx 自動拋錯，直接進 catch
 */
 
 // ========================================
