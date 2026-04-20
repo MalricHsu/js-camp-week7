@@ -229,7 +229,7 @@ const OrderService = {
    */
   async fetchOrders() {
     const res = await axios.get(
-      `${BASE_URL}/api/livejs/v1/admin/${API_PATH}/orders`,
+      `${this.baseURL}/api/livejs/v1/admin/${this.apiPath}/orders`,
       { headers: { authorization: ADMIN_TOKEN } },
     );
     return res.data.orders;
