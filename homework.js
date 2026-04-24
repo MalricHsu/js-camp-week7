@@ -98,17 +98,18 @@ function getThisWeekOrders(orders) {
  */
 function validateOrderUser(data) {
   const errors = [];
-  if (!data.name || data.name.trim() === "") {
+  if (!data.name || data.name.trim().length === 0) {
     errors.push("姓名不可為空");
   }
   const telRule = /^09\d{8}$/;
   if (!data.tel || !telRule.test(data.tel)) {
     errors.push("電話 格式不正確");
   }
-  if (!data.email || !data.email.includes("@")) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!data.email || !emailRegex.test(data.email)) {
     errors.push("Email 格式不正確");
   }
-  if (!data.address) {
+  if (!data.address || data.address.trim().length === 0) {
     errors.push("地址不可為空");
   }
   const validPayments = ["ATM", "Credit Card", "Apple Pay"];
@@ -182,7 +183,7 @@ async function getProductsWithAxios() {
  * @returns {Promise<Object>} - 回傳購物車資料
  */
 async function addToCartWithAxios(productId, quantity) {
-  const res = await axios.get(
+  const res = await axios.post(
     `${BASE_URL}/api/livejs/v1/customer/${API_PATH}/carts`,
     { data: { productId, quantity } },
   );
